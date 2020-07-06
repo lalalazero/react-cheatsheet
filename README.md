@@ -2,7 +2,7 @@
 
 这是一个总结 react 各种写法的 markdown 仓库。
 
-### [Basic](./base)
+### Basic
 
 1. Class Component
 2. Function Component
@@ -12,7 +12,7 @@
 6. context
 7. router
 
-### [Hooks](./hooks)
+### Hooks
 
 1. useState
 2. useEffect
