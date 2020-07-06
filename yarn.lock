@@ -10558,7 +10558,7 @@ react-lifecycles-compat@^3.0.4:
   resolved "https://registry.npm.taobao.org/react-lifecycles-compat/download/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha1-TxonOv38jzSIqMUWv9p4+HI1I2I=
 
-react-live@^2.2.1:
+react-live@^2.2.1, react-live@^2.2.2:
   version "2.2.2"
   resolved "https://registry.npm.taobao.org/react-live/download/react-live-2.2.2.tgz#834edf1c11204e49fa7468166316b2e70da1a6b0"
   integrity sha1-g07fHBEgTkn6dGgWYxay5w2hprA=
@@ -10613,16 +10613,7 @@ react-simple-code-editor@^0.10.0:
   resolved "https://registry.npm.taobao.org/react-simple-code-editor/download/react-simple-code-editor-0.10.0.tgz#73e7ac550a928069715482aeb33ccba36efe2373"
   integrity sha1-c+esVQqSgGlxVIKuszzLo27+I3M=
 
-react@^16.13.1:
-  version "16.13.1"
-  resolved "https://registry.npm.taobao.org/react/download/react-16.13.1.tgz?cache=0&sync_timestamp=1592588093029&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Freact%2Fdownload%2Freact-16.13.1.tgz#2e818822f1a9743122c063d6410d85c1e3afe48e"
-  integrity sha1-LoGIIvGpdDEiwGPWQQ2FweOv5I4=
-  dependencies:
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
-    prop-types "^15.6.2"
-
-react@^16.8.0:
+react@^16.13.1, react@^16.8.0:
   version "16.13.1"
   resolved "https://registry.npm.taobao.org/react/download/react-16.13.1.tgz?cache=0&sync_timestamp=1592587674770&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Freact%2Fdownload%2Freact-16.13.1.tgz#2e818822f1a9743122c063d6410d85c1e3afe48e"
   integrity sha1-LoGIIvGpdDEiwGPWQQ2FweOv5I4=

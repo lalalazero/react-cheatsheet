@@ -1,4 +1,9 @@
 export default {
     base: '/react-cheetsheet',
-    dest: '/dist'
+    dest: '/dist',
+    title: 'React CheatSheet',
+    menu: [
+        'Base',
+        'useState'
+    ]
 }
