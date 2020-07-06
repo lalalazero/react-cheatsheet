@@ -12,6 +12,12 @@
 6. context
 7. router
 
+
+### Advanced
+
+1. HOC
+2. render props
+
 ### Hooks
 
 1. useState
