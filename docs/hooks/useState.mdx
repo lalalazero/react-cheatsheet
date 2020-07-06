@@ -8,6 +8,7 @@ import Bar from '../../component/hooks/Bar'
 import Editor from '../../component/Editor'
 import { BarCode } from '../../component/hooks/Bar'
 import { MyUseStateDemo01, MyUseStateDemo02  } from '../../component/hooks/MyUseState'
+import StaleClosure from '../../component/hooks/StaleClosure'
 
 ## 基础用法
 
@@ -35,3 +36,20 @@ import { MyUseStateDemo01, MyUseStateDemo02  } from '../../component/hooks/MyUse
 <MyUseStateDemo02 />
 
 可以看到每次 state 的更新带来的 re-render 都会按照顺序再次执行 useState（注意 render 的时候 index 都会重置为 0 ), 只是每个单独的 state 的值都被闭包缓存了下来。
+
+## 总结真正的 React 世界
+
+1. 一个函数组件就是一个 React 节点(`FiberNode`)，每个组件都有一个自己的 _state 和 index
+2. _state 对应的是 memorizedState, index 的实现用到了链表
+3. useState 读取 _state[index]，并返回闭包得到的最新的值
+4. index 由 useState 出现的顺序决定（为了保证执行顺序，useState 绝对不能写在条件语句里）
+5. setState 会触发当前组件重新执行，并再次按照顺序执行 useState
+
+参考：
+1. https://static.xiedaimala.com/xdml/file/3ac7c224-c23d-491f-84b5-4fabfbeab9b8/2020-3-24-9-43-8.pdf
+2. https://juejin.im/post/5bdfc1c4e51d4539f4178e1f
+
+## 其他发散 - 过时闭包 Stale Closure
+
+<StaleClosure />
+
