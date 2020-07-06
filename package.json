@@ -1,0 +1,19 @@
+{
+  "name": "react-cheetsheet",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/lalalazero/react-cheetsheet.git",
+  "license": "MIT",
+  "scripts": {
+    "dev": "yarn docz dev",
+    "build": "yarn docz build"
+  },
+  "dependencies": {
+    "docz": "^2.3.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "prop-types": "^15.7.2"
+  }
+}
