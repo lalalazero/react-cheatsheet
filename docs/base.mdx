@@ -1,17 +1,28 @@
 ---
 name: Base
+route: /base
 ---
 
-import { Playground, Props } from 'docz'
-import Button from '../component/Button'
+import { Playground } from 'docz'
 
-# Button
+##  Class component
 
-<Props of={Button} />
+```jsx
+// jsx 的写法
+import React from 'react'
 
-## Basic useage 
+class Count extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+    render(){
+        return (
+            <div>count</div>
+        )
+    }
+}
+```
 
-<Playground>
-    <Button type="submit">Click me</Button>
-    <Button>No, click me!</Button>
-</Playground>
+## Function component
+
+## Pure component
