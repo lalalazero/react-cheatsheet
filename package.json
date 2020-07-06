@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "yarn docz dev",
-    "build": "yarn docz build"
+    "build": "rm -rf dist && yarn docz build"
   },
   "dependencies": {
     "docz": "^2.3.1",

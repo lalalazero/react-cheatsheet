@@ -7,9 +7,31 @@ import { Playground } from 'docz'
 import Bar from '../../component/hooks/Bar'
 import Editor from '../../component/Editor'
 import { BarCode } from '../../component/hooks/Bar'
+import { MyUseStateDemo01, MyUseStateDemo02  } from '../../component/hooks/MyUseState'
 
 ## 基础用法
+
+`useState` 作用在函数式组件中，可以让函数式组件像 Class 组件一样拥有状态。
+
+1. useState 的初始值可以是任意的值
+2. useState 的 state 变化会导致当前函数组件的 re-render
+3. useState 是按照顺序执行的
+3. useState 不能写在条件语句中(why?)
 
 <Editor code={BarCode}/>
 
 
+## 实现原理
+
+利用闭包实现一个 `MyUseState`，功能类似 `useState`
+
+<MyUseStateDemo01 />
+
+
+单次使用 myUseState 看起来已经可以了，多次使用呢？会有问题。
+继续改造，把 state 作为数组，增加一个 index 记录 MyUseState 出现的位置，每次 re-render 的时候保证按照这个顺序依次调用（
+这样同时能拿到 index 对应的 state ），这也是为什么 useState 不能出现在条件语句中，必须保证每次 render 的时候调用顺序都完全一致。
+
+<MyUseStateDemo02 />
+
+可以看到每次 state 的更新带来的 re-render 都会按照顺序再次执行 useState（注意 render 的时候 index 都会重置为 0 ), 只是每个单独的 state 的值都被闭包缓存了下来。

@@ -7,21 +7,31 @@ import {
 } from 'react-live'
 import github from 'prism-react-renderer/themes/github';
 
+const hookScope = {
+    useState
+}
 
-const Editor = ({ code }) => {
+const Editor = ({ code, noInline }) => {
     return (
         <div>
-            <LiveProvider code={code} scope={{ useState }} theme={github}>
-                <LiveEditor disabled={true}/>
+            <LiveProvider code={code}
+                noInline={noInline}
+                scope={hookScope}
+                theme={github}>
+                <LiveEditor disabled={true} />
                 <LiveError />
-                <LivePreview />
+                <div style={{ background: 'lightblue', marginBottom: 20, padding: '20px 0' }}>
+                    <LivePreview />
+                </div>
+
             </LiveProvider>
         </div>
     )
 }
 
 Editor.defaultProps = {
-    code: '()=>(<span>:)</span>)'
+    code: '()=>(<span>:)</span>)',
+    onInline: false
 }
 
 export default Editor
