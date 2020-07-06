@@ -11,6 +11,7 @@
 5. defaultProps
 6. context
 7. router
+8. ref
 
 
 ### Advanced

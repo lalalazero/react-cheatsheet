@@ -4,6 +4,7 @@ export default {
     title: 'React CheatSheet',
     menu: [
         'Base',
-        'useState'
+        'useState',
+        'useEffect'
     ]
 }

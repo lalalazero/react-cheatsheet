@@ -1,0 +1,19 @@
+---
+name: useEffect
+route: /useEffect
+---
+
+import UseEffectDemo from '../../component/hooks/UseEffect'
+
+## 基础要点
+
+1. 什么是副作用
+2. useEffect 解决了什么问题
+    - class 组件的 didMount 和 DidUpdate 通常有很多冗余代码
+    - class 组件的绑定函数 bind this 问题
+3. 类比 class 组件三个钩子结合体 `componentDidMount` `componentDidUpdate` `componentWillUnmount`
+4. 总是会在 after render 之后执行（第一次 render 和之后每次更新）
+5. 添加依赖数组可以控制每次 render 之后是否执行
+6. 分为需要 cleanup 和不需要 cleanup 
+
+<UseEffectDemo />
