@@ -1,5 +1,5 @@
 export default {
-    base: '/react-cheetsheet',
+    base: '/react-cheatsheet',
     dest: '/dist',
     title: 'React CheatSheet',
     menu: [
