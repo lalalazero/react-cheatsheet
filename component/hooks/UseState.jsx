@@ -24,6 +24,23 @@ const starterCode = `
 
 const Starter = () => <Editor code={starterCode}></Editor>
 
+const stateIsObjectCode = `() => {
+    const [student, setStudent] = useState({ name: '小兰', age: 20, location: { region: 'CN', city: 'chengdu' }})
+    const onClick = () => {
+        setStudent({ location: { region: 'CN', city: 'beijing' }})
+    }
+    return (
+        <div>
+            <p>name: {student.name }</p>
+            <p>age: {student.age} </p>
+            <p>location: {student.location.region }  / { student.location.city }</p>
+            <button onClick={onClick}>change location</button>
+        </div>
+    )
+}`
+
+const StateIsObject = () => <Editor code={stateIsObjectCode} />
+
 const myUseStateCode01 = `
     const x = () => {
         console.log('执行x re-render')
@@ -100,6 +117,7 @@ const MyUseStateDemo02 = () => <Editor code={myUseStateCode02} noInline={true} /
 
 export {
     Starter,
+    StateIsObject,
     MyUseStateDemo01,
     MyUseStateDemo02
 }

@@ -24,6 +24,8 @@
 1. useState
 2. useEffect
 3. useLayoutEffect
+3. useContext
+4. useReducer
 3. useMemo
 4. useCallback
 5. useRef

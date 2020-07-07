@@ -3,23 +3,20 @@ name: useState
 route: /useState
 ---
 
-import { Starter, MyUseStateDemo01, MyUseStateDemo02  } from '../../component/hooks/UseState'
+import { Starter, MyUseStateDemo01, MyUseStateDemo02, StateIsObject } from '../../component/hooks/UseState'
 import StaleClosure from '../../component/hooks/StaleClosure'
 
-## 知识要点
 
-`useState` 作用在函数式组件中，可以让函数式组件像 Class 组件一样拥有状态。`[state, setState] = useState()`
-
-1. useState 的初始值可以是任意的值
-2. useState 的初始化可以接受一个函数
-2. useState 的 state 变化会导致当前函数组件的 re-render
-3. useState 是按照顺序执行的
-3. useState 不能写在条件语句中(why?)
-4. setState 也可以接受一个函数 `setState((prevState) => newState)`
 
 ## 基础用法
 
 <Starter />
+
+## state 是复杂对象
+
+当 state 是一个复杂对象时，setState 的时候要注意返回一个完整的 state，因为 setState 不会帮你做属性合并。示例如下，当更新地址时，age 和 name 都丢失了。正确的做法是 `setStudent({...student, location: { region: 'CN', city: 'beijing'}})`
+
+<StateIsObject />
 
 ## 实现原理
 
@@ -36,7 +33,7 @@ import StaleClosure from '../../component/hooks/StaleClosure'
 
 可以看到每次 state 的更新带来的 re-render 都会按照顺序再次执行 useState（注意 render 的时候 index 都会重置为 0 ), 只是每个单独的 state 的值都被闭包缓存了下来。
 
-## 总结真正的 React 世界
+## 真正的 React 世界
 
 1. 一个函数组件就是一个 React 节点(`FiberNode`)，每个组件都有一个自己的 _state 和 index
 2. _state 对应的是 memorizedState, index 的实现用到了链表
@@ -51,4 +48,16 @@ import StaleClosure from '../../component/hooks/StaleClosure'
 ## 其他发散 - 过时闭包 Stale Closure
 
 <StaleClosure />
+
+
+## 要点总结
+
+`useState` 作用在函数式组件中，可以让函数式组件像 Class 组件一样拥有状态。`[state, setState] = useState(initState)`
+
+1. useState 的初始值可以是任意的值
+2. useState 的初始化可以接受一个函数
+2. useState 的 state 变化会导致当前函数组件的 re-render
+3. useState 是按照顺序执行的
+3. useState 不能写在条件语句中(why?)
+4. setState 也可以接受一个函数 `setState((prevState) => newState)`
 

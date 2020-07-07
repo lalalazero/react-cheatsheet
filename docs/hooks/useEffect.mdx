@@ -3,17 +3,44 @@ name: useEffect
 route: /useEffect
 ---
 
-import UseEffectDemo from '../../component/hooks/UseEffect'
+import { BasicEffect } from '../../component/hooks/UseEffect'
 
-## 基础要点
+## 基础用法
+
+第一次 render 以及 点击按钮 +1 每次导致组件 re-render 都会执行 useEffect, 更新 document.title
+
+<BasicEffect />
+
+## 多个 useEffect
+
+## cleanup
+
+## 依赖空数组
+
+## 依赖不为空数组
+
+## 要点总结
+
+`useEffect(effectFunction, arrayDependency)`
 
 1. 什么是副作用
+    
+    请求数据、添加事件监听、直接修改 DOM、打印日志 log 等操作都属于此类。根据是否需要 cleanup ，又分为
+    - 不需要 cleanup 
+        - 打印日志 log
+        - 请求数据
+        - 直接修改 DOM
+    - 需要 cleanup 
+        - setTimeout setInterval 定时器
+        - 事件监听函数
+    
 2. useEffect 解决了什么问题
-    - class 组件的 didMount 和 DidUpdate 通常有很多冗余代码
+    - 函数式组件可以有类似 class 组件的钩子
+    - class 组件的 didMount 和 DidUpdate 通常有很多冗余代码，而且和 class 组件强绑定，无法抽取。 useEffect 可以将这些过程代码按照逻辑单独抽取，各自执行。
     - class 组件的绑定函数 bind this 问题
-3. 类比 class 组件三个钩子结合体 `componentDidMount` `componentDidUpdate` `componentWillUnmount`
-4. 总是会在 after render 之后执行（第一次 render 和之后每次更新）
-5. 添加依赖数组可以控制每次 render 之后是否执行
-6. 分为需要 cleanup 和不需要 cleanup 
-
-<UseEffectDemo />
+3. useEffect 类比 class 组件三个钩子结合体 
+    - `componentDidMount` 
+    - `componentDidUpdate`  
+    - `componentWillUnmount`
+4. useEffect 总是会在 render 之后执行（包括 first render 和 after every update) 
+    - 除非用依赖数组添加控制

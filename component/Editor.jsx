@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useLayoutEffect, useMemo, useCallback, useContext, useRef, useImperativeHandle } from 'react'
 import {
     LiveProvider,
     LiveEditor,
@@ -8,7 +8,8 @@ import {
 import github from 'prism-react-renderer/themes/github';
 
 const hookScope = {
-    useState
+    useState,
+    useEffect, useLayoutEffect, useMemo, useCallback, useContext, useRef, useImperativeHandle
 }
 
 const Editor = ({ code, noInline }) => {
