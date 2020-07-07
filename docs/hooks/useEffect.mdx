@@ -3,7 +3,7 @@ name: useEffect
 route: /useEffect
 ---
 
-import { BasicEffect } from '../../component/hooks/UseEffect'
+import { BasicEffect, MultipleEffect, CleanupEffect, EmptyDependency } from '../../component/hooks/UseEffect'
 
 ## 基础用法
 
@@ -13,9 +13,23 @@ import { BasicEffect } from '../../component/hooks/UseEffect'
 
 ## 多个 useEffect
 
+多个 `useEffect` 按照顺序执行
+
+<MultipleEffect />
+
 ## cleanup
+在运行下一次 effect 之前把前一个 effect 清理掉，背后的设计思想是 y=f(x) 也是函数式的。即便是 effect ，也属于某一次的 render。
+<CleanupEffect />
 
 ## 依赖空数组
+对于没有依赖的 useEffect , 每次组件 render 都会重新执行。千万不要写这种代码：
+```jsx
+useEffect(() => {
+    setState(xxx)
+})
+```
+依赖是空数组的的 useEffect ，只会在第一次 render 执行，相当于 componentDidMount ，但是两者还是有不同的。（具体不同?）由于 props 变化带来的 re-render 不会执行。
+<EmptyDependency />
 
 ## 依赖不为空数组
 

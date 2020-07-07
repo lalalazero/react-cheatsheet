@@ -14,7 +14,8 @@ import StaleClosure from '../../component/hooks/StaleClosure'
 
 ## state 是复杂对象
 
-当 state 是一个复杂对象时，setState 的时候要注意返回一个完整的 state，因为 setState 不会帮你做属性合并。示例如下，当更新地址时，age 和 name 都丢失了。正确的做法是 `setStudent({...student, location: { region: 'CN', city: 'beijing'}})`
+当 `state` 是一个复杂对象时， `setState` 的时候要注意返回一个完整的 `state` ，因为 `setState` 不会帮你做属性合并。示例如下，当更新地址时， `age` 和 `name` 都丢失了。正确的做法是 `setStudent({...student, location: { region: 'CN', city: 'beijing'}})` 。
+还需要注意 `setState(obj)` 时， `obj` 的地址如果没变，也是不会 `re-render` 的。
 
 <StateIsObject />
 
