@@ -2,9 +2,12 @@ import React from 'react'
 import Editor from '../Editor'
 
 const starterCode = `
-    () => (
+    () => {
         const [count, setCount] = useState(0)
         const [count2, setCount2] = useState(0)
+        const [count3, setCount3] = useState(() => {
+            return Math.random() > 0.5 ? 1 : 0
+        })
         return (
             <div>
                 <span>count: {count}</span>
@@ -12,12 +15,14 @@ const starterCode = `
                 <p>传递一个函数作为参数</p>
                 <span>count2: {count2}</span>
                 <button onClick={() => setCount2((prevCount) => prevCount + 2)}>+2</button>
+                <p>useState可以用函数做初始化</p>
+                <span>count3: {count3}</span>
             </div>
         )
-    )
+    }   
 `
 
-const Starter = <Editor code={starterCode}></Editor>
+const Starter = () => <Editor code={starterCode}></Editor>
 
 const myUseStateCode01 = `
     const x = () => {

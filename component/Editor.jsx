@@ -20,7 +20,7 @@ const Editor = ({ code, noInline }) => {
                 theme={github}>
                 <LiveEditor disabled={true} />
                 <LiveError />
-                <div style={{ background: 'lightblue', marginBottom: 20, padding: '20px 0' }}>
+                <div style={{ background: 'lightblue', marginBottom: 20, padding: '20px' }}>
                     <LivePreview />
                 </div>
 

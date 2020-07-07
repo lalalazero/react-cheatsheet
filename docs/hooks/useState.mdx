@@ -6,17 +6,20 @@ route: /useState
 import { Starter, MyUseStateDemo01, MyUseStateDemo02  } from '../../component/hooks/UseState'
 import StaleClosure from '../../component/hooks/StaleClosure'
 
-## 基础用法
+## 知识要点
 
-`useState` 作用在函数式组件中，可以让函数式组件像 Class 组件一样拥有状态。
+`useState` 作用在函数式组件中，可以让函数式组件像 Class 组件一样拥有状态。`[state, setState] = useState()`
 
 1. useState 的初始值可以是任意的值
+2. useState 的初始化可以接受一个函数
 2. useState 的 state 变化会导致当前函数组件的 re-render
 3. useState 是按照顺序执行的
 3. useState 不能写在条件语句中(why?)
+4. setState 也可以接受一个函数 `setState((prevState) => newState)`
+
+## 基础用法
 
 <Starter />
-
 
 ## 实现原理
 
