@@ -3,11 +3,7 @@ name: useState
 route: /useState
 ---
 
-import { Playground } from 'docz'
-import Bar from '../../component/hooks/Bar'
-import Editor from '../../component/Editor'
-import { BarCode } from '../../component/hooks/Bar'
-import { MyUseStateDemo01, MyUseStateDemo02  } from '../../component/hooks/MyUseState'
+import { Starter, MyUseStateDemo01, MyUseStateDemo02  } from '../../component/hooks/UseState'
 import StaleClosure from '../../component/hooks/StaleClosure'
 
 ## 基础用法
@@ -19,7 +15,7 @@ import StaleClosure from '../../component/hooks/StaleClosure'
 3. useState 是按照顺序执行的
 3. useState 不能写在条件语句中(why?)
 
-<Editor code={BarCode}/>
+<Starter />
 
 
 ## 实现原理

@@ -1,7 +1,25 @@
 import React from 'react'
 import Editor from '../Editor'
 
-const code01 = `
+const starterCode = `
+    () => (
+        const [count, setCount] = useState(0)
+        const [count2, setCount2] = useState(0)
+        return (
+            <div>
+                <span>count: {count}</span>
+                <button onClick={() => setCount(count + 1)}>+1</button>
+                <p>传递一个函数作为参数</p>
+                <span>count2: {count2}</span>
+                <button onClick={() => setCount2((prevCount) => prevCount + 2)}>+2</button>
+            </div>
+        )
+    )
+`
+
+const Starter = <Editor code={starterCode}></Editor>
+
+const myUseStateCode01 = `
     const x = () => {
         console.log('执行x re-render')
         render(<Foo />)
@@ -34,9 +52,9 @@ const code01 = `
     render(<Foo />)
 `
 
-const MyUseStateDemo01 = () => <Editor code={code01} noInline={true} />
+const MyUseStateDemo01 = () => <Editor code={myUseStateCode01} noInline={true} />
 
-const code02 = `
+const myUseStateCode02 = `
     let _state = []
     let index = 0
     const x = () => {
@@ -73,9 +91,10 @@ const code02 = `
     render(<Foo />)
 `
 
-const MyUseStateDemo02 = () => <Editor code={code02} noInline={true} />
+const MyUseStateDemo02 = () => <Editor code={myUseStateCode02} noInline={true} />
 
 export {
+    Starter,
     MyUseStateDemo01,
     MyUseStateDemo02
 }
