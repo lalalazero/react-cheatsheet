@@ -3,7 +3,7 @@ name: useEffect
 route: /useEffect
 ---
 
-import { BasicEffect, MultipleEffect, CleanupEffect, EmptyDependency } from '../../component/hooks/UseEffect'
+import { BasicEffect, MultipleEffect, CleanupEffect, EmptyDependency, AccurateDependency } from '../../component/hooks/UseEffect'
 
 ## 基础用法
 
@@ -13,25 +13,48 @@ import { BasicEffect, MultipleEffect, CleanupEffect, EmptyDependency } from '../
 
 ## 多个 useEffect
 
-多个 `useEffect` 按照顺序执行
+多个 `useEffect` 按照顺序执行。（注意：如果混用了 `useEffect` 和 `useLayoutEffect` 可能执行顺序会有差别）
 
 <MultipleEffect />
 
-## cleanup
-在运行下一次 effect 之前把前一个 effect 清理掉，背后的设计思想是 y=f(x) 也是函数式的。即便是 effect ，也属于某一次的 render。
-<CleanupEffect />
-
 ## 依赖空数组
-对于没有依赖的 useEffect , 每次组件 render 都会重新执行。千万不要写这种代码：
+
+依赖是空数组的的 useEffect ，只会在第一次 render 执行，相当于 componentDidMount ，但是两者还是有不同的。（具体不同?）由于 props 变化带来的 re-render 不会执行。
+<EmptyDependency />
+
+对于没有依赖的 useEffect , 每次组件 render 都会重新执行，所以千万不要写这种代码，死循环没商量：
 ```jsx
 useEffect(() => {
     setState(xxx)
 })
 ```
-依赖是空数组的的 useEffect ，只会在第一次 render 执行，相当于 componentDidMount ，但是两者还是有不同的。（具体不同?）由于 props 变化带来的 re-render 不会执行。
-<EmptyDependency />
+同理，class 组件也不能写这种代码:
+```jsx
+class Foo extends React.Component {
+    render() {
+        this.setState({})
+    }
+}
+```
 
 ## 依赖不为空数组
+对于依赖不为空的数组，当依赖有更新时的 render 会去执行 useEffect。所以 App 组件的 re-render 不会执行 Foo 组件的 useEffect, 因为 count 不受影响，还是没变的。
+<AccurateDependency />
+
+## cleanup
+在运行下一次 effect 之前把前一个 effect 清理掉，背后的设计思想是 y=f(x) 也是函数式的。即便是 effect ，也属于某一次的 render。cleanup 也遵循依赖数组的规则。
+<CleanupEffect />
+
+#### 设想如果不清理掉前一次的 effect，会造成什么后果？
+1. 如果是给 DOM 绑定的事件监听不移除，很有可能造成内存泄漏。
+2. 当你的 effect 依赖的 props 发生了改变，但是没有清理之前的 effect，那么之前的 effect 的执行结果就是错的。比如：
+    ```jsx
+    useEffect(() => {
+        subscribeToDoSomething(props.Id, handler)
+        return unsubscribeToDoSomething(props.Id, handler)
+    }, [props.Id])
+    ```
+
 
 ## 要点总结
 
@@ -47,6 +70,7 @@ useEffect(() => {
     - 需要 cleanup 
         - setTimeout setInterval 定时器
         - 事件监听函数
+        - 其他发布订阅事件
     
 2. useEffect 解决了什么问题
     - 函数式组件可以有类似 class 组件的钩子

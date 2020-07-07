@@ -93,9 +93,29 @@ const EmptyDependencyCode = `
     render(<App />)
 `
 const EmptyDependency = () => <Editor code={EmptyDependencyCode} noInline={true}></Editor>
+const AccurateDependencyCode = `
+    const Foo = ({ random }) => {
+        const [count, setCount] = useState(0)
+        useEffect(() => {
+            console.log('count updated, useEffect 执行')
+        },[count])
+        return <div>
+            <p>Foo 组件: random = {random} / count = {count} <button onClick={() => setCount(count+1)}>+1</button></p>
+        </div>
+    }
+    const App = () => {
+        const [random, setRandom] = useState(Math.random())
+        return <div>App 组件 <button onClick={() => setRandom(Math.random())}>re-render APP</button>
+            <Foo random={random}/>
+        </div>
+    }
+    render(<App />)
+`
+const AccurateDependency = () => <Editor code={AccurateDependencyCode} noInline={true}></Editor>
 export {
     BasicEffect,
     MultipleEffect,
     CleanupEffect,
-    EmptyDependency
+    EmptyDependency,
+    AccurateDependency
 }
