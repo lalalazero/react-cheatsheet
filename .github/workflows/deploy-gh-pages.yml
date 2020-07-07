@@ -1,10 +1,13 @@
 name: Build and Deploy
 on: 
   push:
-    # branches:
-    #   - master
-    tags:
-      - deploy
+    branches:
+      - master
+    paths:
+      - 'docs/**'
+      - 'component/**'
+    # tags:
+    #   - deploy
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
