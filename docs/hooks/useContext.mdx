@@ -1,0 +1,15 @@
+---
+name: useContext
+route: /useContext
+---
+import { ContextDemo, ContextDemo2 } from '../../component/hooks/UseContext'
+
+## 基础用法
+
+<ContextDemo />
+
+Context 本身只是提供一个容器，可以往里塞任何东西。基础用法中因为每次 `setTheme` 导致 `App` 组件 re-render，所以每次 Foo 组件和 Bar 组件都能拿到一致的 theme。但是要注意其实 Context 本身不是响应式的，在一个模块改了另外一个模块感知不到。
+
+<ContextDemo2 />
+
+## 多个Context

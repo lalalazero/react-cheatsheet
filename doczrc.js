@@ -5,6 +5,7 @@ export default {
     menu: [
         'Base',
         'useState',
-        'useEffect'
+        'useEffect',
+        'useContext'
     ]
 }
