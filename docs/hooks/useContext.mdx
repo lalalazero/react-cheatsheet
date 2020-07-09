@@ -2,14 +2,31 @@
 name: useContext
 route: /useContext
 ---
-import { ContextDemo, ContextDemo2 } from '../../component/hooks/UseContext'
+import { ContextDemo, MultipleContext } from '../../component/hooks/UseContext'
+
+## Context
+
+Context 用来在跨组件传值，或者多个组件共享数据。类似 Redux 的 state，在需要的地方 connnet 上去，但是 Redux 支持的功能更强大。Context 只是一个全局容器，可以挂载任何数据，然后在需要的地方使用。如果没有 Context ，就会需要组件层层传递 props，陷入 props 地狱。
 
 ## 基础用法
 
+Context.Provider 的 value 属性改变会导致用到 Context 的地方 re-render，避免写 `value={{ data: data }}` 这样的代码，因为每次父节点 re-render 的时候重新给 value 生成了新的对象，导致所有用到 Context 的子孙节点都会 re-render。打开控制台会看到 Other 组件每次都重新 render 了。
 <ContextDemo />
 
-Context 本身只是提供一个容器，可以往里塞任何东西。基础用法中因为每次 `setTheme` 导致 `App` 组件 re-render，所以每次 Foo 组件和 Bar 组件都能拿到一致的 theme。但是要注意其实 Context 本身不是响应式的，在一个模块改了另外一个模块感知不到。
-
-<ContextDemo2 />
-
 ## 多个Context
+
+当需要消费多个 Context 时，之前用 Context.Consumer 嵌套
+
+<MultipleContext />
+
+用 useContext 改写之后，代码不用再嵌套。
+
+```jsx
+const Foo = () => {
+    const theme = useContext(ThemeContext)
+    const user = useContext(UserContext)
+    return (
+        <div>theme: { theme}, user: { user.name} </div>
+    )
+}
+```
