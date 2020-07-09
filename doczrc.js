@@ -6,6 +6,7 @@ export default {
         'Base',
         'useState',
         'useEffect',
-        'useContext'
+        'useContext',
+        'useLayoutEffect'
     ]
 }

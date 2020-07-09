@@ -1,0 +1,15 @@
+---
+name: useLayoutEffect
+route: /useLayoutEffect
+---
+
+import Demo from '../../component/hooks/UseLayoutEffect'
+
+useLayoutEffect 和 useEffect 的区别在于执行时间上。useEffect 等到浏览器渲染完成后执行，但是 useLayoutEffect 不等到浏览器 paint 就直接把对DOM的修改应用上去。
+过程(2) 执行 useLayoutEffect 过程(3) 执行 useEffect。通常我们都不会对 layout 做操作，因此让浏览器先渲染页面，用户看到，再执行 useEffect 做一些做副作用请求等。
+
+```
+虚拟DOM -----(1)-----> 真实DOM -------(2)--------> 浏览器Paint ------(3)-------> 人眼看到
+```
+
+<Demo />
