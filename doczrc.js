@@ -8,6 +8,7 @@ export default {
         'useEffect',
         'useContext',
         'useLayoutEffect',
-        'useMemo'
+        'useMemo',
+        'useCallback'
     ]
 }
