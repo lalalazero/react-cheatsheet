@@ -1,0 +1,32 @@
+---
+name: useMemo
+route: /useMemo
+---
+
+## React.memo
+
+import { WithoutMemo, WithMemo, WithClickFunc, WithUseMemo } from '../../component/hooks/UseMemo'
+
+如下示例，当 App 组件更新的时候， Child 组件也会 re-render
+
+<WithoutMemo />
+
+很明显这是可以优化的，而且如果 Child 组件有非常昂贵的计算，这种优化也是必要的。用 `React.memo` 优化一下之后，更新 n 不会导致 Child 组件的更新，只有当依赖的 m 变化的时候才会 re-render。
+
+<WithMemo />
+
+如果要给 Child 组件传递一个 onClick 函数怎么办？ `React.memo` 优化了当 props 变化时才重新更新。 但是 props 有监听函数之后，Child 组件还是会更新，因为每次 App 组件 re-render 都会生成新的 onClick 函数，传递给 Child 组件，所以 Child 组件也会 re-render。
+
+<WithClickFunc />
+
+其实同样的道理在 PureComponent 也是一样的。很多时候会有这样的代码：即便 Child 是一个 PureComponent，但是每次父组件 re-render 的时候还是会导致 Child 的更新。
+
+```jsx
+<Child onClick={() => {}}/>
+```
+
+## useMemo
+
+使用 useMemo 把函数记忆起来，如果参数没有改变，那么 Child 就不用 re-render
+
+<WithUseMemo />

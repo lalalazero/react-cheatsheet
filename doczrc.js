@@ -7,6 +7,7 @@ export default {
         'useState',
         'useEffect',
         'useContext',
-        'useLayoutEffect'
+        'useLayoutEffect',
+        'useMemo'
     ]
 }
